@@ -13,15 +13,15 @@
   ],
   "require": {
     "php": "^7.0",
-    "bjeavons/zxcvbn-php": "^0.3.0",
+    "bjeavons/zxcvbn-php": "^1.0.0",
     "psr/container": "^1.0",
     "psr/log": "^1.0",
-    "symfony/validator": "^3.3.6 || ^4.0"
+    "symfony/validator": "^4.0 || ^5.0"
   },
   "require-dev": {
-    "symfony/config": "^3.3.6 || ^4.0",
-    "symfony/console": "^3.3.6 || ^4.0",
-    "symfony/phpunit-bridge": "^3.3.6 || ^4.1",
+    "symfony/config": "^4.0 || ^5.0",
+    "symfony/console": "^4.0 || ^5.0",
+    "symfony/phpunit-bridge": "^4.1 || ^5.0",
     "php-http/httplug": "^1.1",
     "guzzlehttp/psr7": "^1.4"
   },
