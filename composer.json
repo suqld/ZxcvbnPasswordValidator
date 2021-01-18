@@ -1,5 +1,5 @@
 {
-  "name": "locastic/zxcvbn-password-validator",
+  "name": "suqld/zxcvbn-password-validator",
   "description": "Realistic Symfony password strength validator based on Zxcvbn PHP ",
   "keywords": ["password", "validator", "symfony", "php", "dropbox", "zxcvb"],
   "type": "library",
