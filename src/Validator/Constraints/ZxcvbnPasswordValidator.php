@@ -5,10 +5,10 @@ namespace Locastic\Component\ZxcvbnPasswordValidator\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use ZxcvbnPhp\Zxcvbn;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Password strength Validation.
@@ -50,10 +50,10 @@ class ZxcvbnPasswordValidator extends ConstraintValidator
         $zxcvbn = new Zxcvbn();
         $strength = $zxcvbn->passwordStrength($password);
 
-        if ($strength['entropy'] < $constraint->minEntropy) {
+        if ($strength['score'] < $constraint->minScore) {
             $parameters = [
-                '{{ min_entropy }}' => $constraint->minEntropy,
-                '{{ current_entropy }}' => $strength['entropy'],
+                '{{ min_score }}' => $constraint->minScore,
+                '{{ current_score }}' => $strength['score'],
             ];
 
             $this->context->buildViolation($this->translator->trans($constraint->message, $parameters, 'validators'))

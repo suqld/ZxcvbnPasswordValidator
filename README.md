@@ -2,24 +2,6 @@
 Realistic Symfony password strength validator based on Dropbox's zxcvbn project. 
 
 
-<h1 align="center">
-    <a href="https://packagist.org/packages/locastic/zxcvbn-password-validator" title="License" target="_blank">
-        <img src="https://img.shields.io/packagist/l/locastic/zxcvbn-password-validator.svg" />
-    </a>
-    <a href="https://packagist.org/packages/locastic/zxcvbn-password-validator" title="Version" target="_blank">
-        <img src="https://img.shields.io/packagist/v/Locastic/zxcvbn-password-validator.svg" />
-    </a>
-    <a href="https://travis-ci.org/Locastic/ZxcvbnPasswordValidator" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/Locastic/ZxcvbnPasswordValidator/master.svg" />
-    </a>
-    <a href="https://scrutinizer-ci.com/g/Locastic/ZxcvbnPasswordValidator/" title="Scrutinizer" target="_blank">
-        <img src="https://img.shields.io/scrutinizer/g/Locastic/ZxcvbnPasswordValidator.svg" />
-    </a>
-    <a href="https://packagist.org/packages/locastic/zxcvbn-password-validator" title="Total Downloads" target="_blank">
-        <img src="https://poser.pugx.org/locastic/zxcvbn-password-validator/downloads" />
-    </a>
-</h1>
-
 ## Overview
 
 Zxcvbn-PHP is a password strength estimator using pattern matching and minimum entropy calculation. 
@@ -38,7 +20,7 @@ This validator is based on library: [Zxcvbn-PHP](https://github.com/bjeavons/zxc
 ## Installation
  
  ```
- composer require locastic/zxcvbn-password-validator
+ composer require suqld/zxcvbn-password-validator
  ```
  
  ## Options
@@ -49,7 +31,7 @@ This validator is based on library: [Zxcvbn-PHP](https://github.com/bjeavons/zxc
  |     Option      |   Type   |                                       Description                                       |
  | --------------- | -------- | --------------------------------------------------------------------------------------- |
  | message         | `string` | The validation message (default: `password_too_weak`)                                   |
- | minEntropy      | `float`  | Desired minimal entropy value (password strength                                        |
+ | minScore        | `int`    | Desired minimal score value (password strength                                          |
  
  ## Annotations
  
@@ -63,7 +45,7 @@ This validator is based on library: [Zxcvbn-PHP](https://github.com/bjeavons/zxc
  
  ```php
  /**
-  * @LocasticPassword\ZxcvbnPasswordValidator(minEntropy=50)
+  * @LocasticPassword\ZxcvbnPasswordValidator(minScore=3)
   */
  protected $password;
  ```
@@ -74,10 +56,6 @@ This validator is based on library: [Zxcvbn-PHP](https://github.com/bjeavons/zxc
       properties:
           password:
               - Locastic\Component\ZxcvbnPasswordValidator\Validator\Constraints\ZxcvbnPasswordValidator:
-                   minEntropy: 50
+                   minScore: 3
    ```
-  
-  ## Support
-  
-  Need help at your project? Write us an email on info@locastic.com
  
