@@ -12,34 +12,33 @@ class ZxcvbnPasswordValidatorTest extends ConstraintValidatorTestCase
 
     public function testNullIsValid()
     {
-        $this->validator->validate(null, new ZxcvbnPassword(['minEntropy' => 70]));
+        $this->validator->validate(null, new ZxcvbnPassword(['minScore' => 3]));
 
         $this->assertNoViolation();
     }
 
     public function testEmptyIsValid()
     {
-        $this->validator->validate('', new ZxcvbnPassword(['minEntropy' => 70]));
+        $this->validator->validate('', new ZxcvbnPassword(['minScore' => 3]));
 
         $this->assertNoViolation();
     }
-    /**
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     */
+
     public function testExpectsStringCompatibleType()
     {
-        $this->validator->validate(new \stdClass(), new ZxcvbnPassword(['minEntropy' => 70]));
+        $this->expectException(\Symfony\Component\Validator\Exception\UnexpectedTypeException::class);
+        $this->validator->validate(new \stdClass(), new ZxcvbnPassword(['minScore' => 3]));
     }
 
 
     public function testWeakPasswordsWillNotPass()
     {
-        $constraint = new ZxcvbnPassword(['minEntropy' => 70]);
+        $constraint = new ZxcvbnPassword(['minScore' => 3]);
         $this->validator->validate('password', $constraint);
 
         $parameters = [
-            '{{ min_entropy }}' => 70,
-            '{{ current_entropy }}' => 0.0,
+            '{{ min_score }}' => 3,
+            '{{ current_score }}' => 0.0,
         ];
 
         $this->buildViolation('password_too_weak')
@@ -49,7 +48,7 @@ class ZxcvbnPasswordValidatorTest extends ConstraintValidatorTestCase
 
     public function testStrongPasswordsWillPass()
     {
-        $constraint = new ZxcvbnPassword(['minEntropy' => 70]);
+        $constraint = new ZxcvbnPassword(['minScore' => 3]);
         $this->validator->validate('Ca@ see alpha Lorem Ipsum danlsdla', $constraint);
 
         $this->assertNoViolation();
